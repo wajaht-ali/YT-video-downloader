@@ -1,5 +1,4 @@
 const ytdl = require('ytdl-core');
-const axios = require('axios');
 
 exports.downloadVideo = async (req, res) => {
   const { url, quality } = req.body;
@@ -9,13 +8,18 @@ exports.downloadVideo = async (req, res) => {
   }
 
   try {
-    // Get video information and format
     const info = await ytdl.getInfo(url);
-    const format = ytdl.chooseFormat(info.formats, { quality });
+    console.log('Video info:', info); // Debugging log
 
-    // Respond with the download URL
+    const format = ytdl.chooseFormat(info.formats, { quality });
+    if (!format) {
+      return res.status(400).json({ error: 'Requested quality is not available' });
+    }
+
+    // Return download URL
     res.json({ downloadUrl: format.url });
   } catch (error) {
-    res.status(500).json({ error: 'Failed to process the video' });
+    console.error('Error fetching video info:', error); // Log detailed error
+    res.status(500).json({ error: 'Unable to fetch the download link' });
   }
 };
