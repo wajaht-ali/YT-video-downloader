@@ -17,7 +17,7 @@ exports.downloadVideo = async (req, res) => {
     }
 
     // Return download URL
-    res.json({ downloadUrl: format.url });
+    return res.json({ downloadUrl: format.url });
   } catch (error) {
     console.error('Error fetching video info:', error); // Log detailed error
     res.status(500).json({ error: 'Unable to fetch the download link' });

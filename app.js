@@ -15,10 +15,12 @@ app.use(
     withCredentials: true,
   })
 );
+
 // Routes
-app.use("/", (req, res) => {
-  res.send("Server is running");
+app.get("/", (req, res) => {
+  res.send(`Server is running on port ${PORT}`);
 });
+
 app.use("/download", youtubeRoutes);
 
 app.listen(PORT, () => {
