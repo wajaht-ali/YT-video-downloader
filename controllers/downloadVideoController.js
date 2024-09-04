@@ -1,6 +1,6 @@
 const ytdl = require('ytdl-core');
 
-exports.downloadVideo = async (req, res) => {
+export const downloadController = async (req, res) => {
   const { url, quality } = req.body;
 
   if (!url || !ytdl.validateURL(url)) {
@@ -15,7 +15,7 @@ exports.downloadVideo = async (req, res) => {
     if (!format) {
       return res.status(400).json({ error: 'Requested quality is not available' });
     }
-
+    
     // Return download URL
     return res.json({ downloadUrl: format.url });
   } catch (error) {

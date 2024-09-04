@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const youtubeController = require('../controllers/downloadVideoController.js');
+// const downloadController = require('../controllers/downloadVideoController.js');
+const downloadController = require('../controllers/downloadVideoController.js');
 
 // POST request to handle video download
-router.post('/', youtubeController.downloadVideo);
+router.post('/', downloadController);
 
 module.exports = router;
