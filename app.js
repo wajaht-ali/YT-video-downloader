@@ -10,7 +10,7 @@ app.use(express.json());
 // cors options
 app.use(
   cors({
-    origin: "https://yt-video-downloader-production.up.railway.app",
+    origin: "*",
     method: ["POST", "GET", "PUT", "DELETE"],
     withCredentials: true,
   })
